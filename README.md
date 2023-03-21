@@ -1,5 +1,4 @@
 # CPSC_449_Wordle
-Wordle Backend Project
 
 # RESTful Back-end Microservices and APIs for a Server-side Wordle Game
 
