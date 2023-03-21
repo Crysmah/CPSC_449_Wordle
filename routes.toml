@@ -1,0 +1,69 @@
+[http]
+  [http.middlewares]
+
+    [http.middlewares.api-stripprefix.stripPrefix]
+      prefixes = ["/dict", "/guess", "/stats", "/games", "/req"]
+
+
+  [http.routers]
+
+    [http.routers.dict-http]
+      entryPoints = ["http"]
+      service = "dict"
+      rule = "PathPrefix(`/dict`)"
+      middlewares = ["api-stripprefix"]
+    
+    [http.routers.guess-http]
+      entryPoints = ["http"]
+      service = "guess"
+      rule = "PathPrefix(`/guess`)"
+      middlewares = ["api-stripprefix"]
+
+    [http.routers.stats-http]
+      entryPoints = ["http"]
+      service = "stats"
+      rule = "PathPrefix(`/stats`)"
+      middlewares = ["api-stripprefix"]
+
+    [http.routers.state-http]
+      entryPoints = ["http"]
+      service = "state"
+      rule = "PathPrefix(`/games`)"
+      middlewares = ["api-stripprefix"]
+      
+    [http.routers.req-http]
+      entryPoints = ["http"]
+      service = "req"
+      rule = "PathPrefix(`/req`)"
+      middlewares = ["api-stripprefix"]
+
+  [http.services]
+
+    [http.services.dict]
+      [http.services.dict.loadBalancer]
+        [[http.services.dict.loadBalancer.servers]]
+          url = "http://127.0.0.1:5000"
+
+    [http.services.guess]
+      [http.services.guess.loadBalancer]
+        [[http.services.guess.loadBalancer.servers]]
+          url = "http://127.0.0.1:5100"
+
+    [http.services.stats]
+      [http.services.stats.loadBalancer]
+        [[http.services.stats.loadBalancer.servers]]
+          url = "http://127.0.0.1:5200"
+        [[http.services.stats.loadBalancer.servers]]
+          url = "http://127.0.0.1:5201"
+        [[http.services.stats.loadBalancer.servers]]
+          url = "http://127.0.0.1:5202"
+
+    [http.services.state]
+      [http.services.state.loadBalancer]
+        [[http.services.state.loadBalancer.servers]]
+          url = "http://127.0.0.1:5300"
+             
+     [http.services.req]
+      [http.services.req.loadBalancer]
+        [[http.services.req.loadBalancer.servers]]
+          url = "http://127.0.0.1:5400"
