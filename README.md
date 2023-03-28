@@ -2,16 +2,6 @@
 
 # RESTful Back-end Microservices and APIs for a Server-side Wordle Game
 
-## Group Members:
-
-    Kevin Garcia Sarmiento
-
-    Javier Diaz
-
-    Maia Nguyen
-
-    Michael Dang
-
 ## Run and test the services:
 
 1. Go to the /api directory:
